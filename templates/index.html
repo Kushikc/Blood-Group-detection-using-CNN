@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fingerprint Blood Group Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+</head>
+<body>
+
+    <!-- 🎥 Background Video -->
+    <video autoplay muted loop id="bg-video">
+        <source src="{{ url_for('static', filename='CSS/videos/fingerprint_bg.mp4') }}" type="video/mp4">
+        
+    </video>
+
+    <!-- 🌈 Content Section -->
+    <div class="container">
+        <!-- Scan line -->
+        <div class="scan-line"></div>
+
+        <h1>🩸 Fingerprint Blood Group Detection</h1>
+
+        <!-- Upload form -->
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" name="file" id="fileInput" accept="image/*" required>
+            <button type="submit">
+                <img src="{{ url_for('static', filename='CSS/images/blood.jpg') }}" alt="blood"> Predict Blood Group
+            </button>
+        </form>
+
+        <!-- Result card -->
+        <div id="result" class="hidden">
+            <span>Predicted: <span id="predLabel"></span> (Confidence: <span id="predConf"></span>)</span>
+        </div>
+    </div>
+
+    <!-- 🧠 JavaScript -->
+    <script>
+        const form = document.getElementById('uploadForm');
+        const resultDiv = document.getElementById('result');
+        const predLabel = document.getElementById('predLabel');
+        const predConf = document.getElementById('predConf');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fileInput = document.getElementById('fileInput');
+            if (!fileInput.files.length) return alert('Select a file');
+
+            const fd = new FormData();
+            fd.append('file', fileInput.files[0]);
+
+            try {
+                const res = await fetch('/predict', { method: 'POST', body: fd });
+                const data = await res.json();
+                if (res.ok) {
+                    predLabel.textContent = data.label;
+                    predConf.textContent = Math.round(data.confidence * 100) + '%';
+                    resultDiv.classList.remove('hidden');
+                } else {
+                    alert(data.error || 'Prediction failed');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Server error. Check console.');
+            }
+        });
+    </script>
+</body>
+</html>
+

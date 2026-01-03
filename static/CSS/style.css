@@ -1,0 +1,93 @@
+/* 🎥 Background Video Setup */
+#bg-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.7) contrast(1.1); /* Keeps video clear and colorful */
+}
+
+/* 🌈 Base */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    top: 25%;
+}
+
+/* 🩸 Title */
+h1 {
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    text-shadow: 0 0 20px #ff0044;
+}
+
+/* 📁 Upload Form - Glass Effect */
+form {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1); /* transparent */
+    backdrop-filter: blur(8px); /* glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px 30px;
+    box-shadow: 0 0 25px rgba(255, 0, 76, 0.4);
+}
+
+/* File Input */
+input[type="file"] {
+    padding: 8px;
+    border: 2px solid #ff4b5c;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+}
+
+/* Button */
+button {
+    background: linear-gradient(90deg, #ff4b5c, #ff1e56);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-left: 10px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 0 10px #ff1e56;
+    transition: all 0.3s ease;
+}
+button:hover {
+    box-shadow: 0 0 25px #ff0044;
+    transform: scale(1.05);
+}
+button img {
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* 📊 Result Card */
+#result {
+    margin-top: 25px;
+    font-size: 1.2em;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #ff0044;
+}
+.hidden {
+    display: none;
+}
