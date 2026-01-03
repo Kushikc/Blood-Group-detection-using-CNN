@@ -1,0 +1,19 @@
+# Virtual environments
+fingerprint_env/
+fingerprint_env39/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Machine learning models
+*.h5
+
+# Dataset
+dataset_blood_group/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Upload folders
+uploads/
